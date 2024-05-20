@@ -2,6 +2,7 @@ const loginForm = document.getElementById('loginForm');
 const loginInput = document.getElementById('loginInput');
 const passwordInput = document.getElementById('passwordInput');
 const token = localStorage.getItem('token'); // Get the token from local storage
+export const tokenStatus = checkToken();
 
 function checkToken() {
     let tokenStatus = false;
@@ -13,7 +14,28 @@ function checkToken() {
     return tokenStatus;
 }
 
-export const tokenStatus = checkToken();
+if (checkToken === true) {
+    // Display the connected message
+    const connectedMessage = document.createElement('div');
+    connectedMessage.textContent = 'Vous êtes connecté.e. ';
+
+    const disconnectLink = document.createElement('a');
+    disconnectLink.textContent = '[Se déconnecter]';
+    disconnectLink.href = '#';
+    disconnectLink.addEventListener('click', () => {
+        // Remove the token from local storage
+        localStorage.removeItem('token');
+        // Reload the page
+        window.location.reload();
+    });
+
+    connectedMessage.appendChild(disconnectLink);
+
+    const mainTag = document.querySelector('main');
+    const firstH2 = document.querySelector('h2');
+    mainTag.insertBefore(connectedMessage, firstH2.nextSibling);
+    loginForm.style.display = 'none';
+}
 
 
 // if (token) {

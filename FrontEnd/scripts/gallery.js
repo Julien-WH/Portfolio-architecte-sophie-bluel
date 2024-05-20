@@ -1,6 +1,6 @@
-const works = await fetchWorks();
-const categories = await fetchCategories();
-const selectedCategory = "all";
+ export const works = await fetchWorks();
+ export const categories = await fetchCategories();
+ let selectedCategory
 
 // Récupérer les travaux dans l'api et les stocker dans une variable "works"
 async function fetchWorks() {
