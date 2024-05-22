@@ -1,7 +1,8 @@
 const loginForm = document.getElementById('loginForm');
 const loginInput = document.getElementById('loginInput');
 const passwordInput = document.getElementById('passwordInput');
-import { tokenStatus } from './script.js';
+const token = localStorage.getItem("token");
+const tokenStatus = token !== null;
 
 // Récupérer les données du formulaire de connexion et les envoyer à l'API
 if (tokenStatus === false) {

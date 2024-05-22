@@ -1,10 +1,10 @@
 // Vérifier si le token est présent dans le localStorage
 const token = localStorage.getItem("token");
-export const tokenStatus = token !== null;
+const tokenStatus = token !== null;
 
-// Si le tokenStatus est false, afficher le lien de connexion
+// Si l'utilisateur est connecté
 if (tokenStatus === true) {
-  // Afficher le bouton de déconnexion
+  // Afficher le bouton de déconnexion si l'utilisateur est connecté
   const navLinks = document.querySelectorAll("header nav li");
   const logoutLink = document.createElement("a");
   logoutLink.href = "#";
@@ -15,6 +15,25 @@ if (tokenStatus === true) {
     localStorage.removeItem("token");
     window.location.reload();
   });
+
+  // Afficher la bannière du mode édition si l'utilisateur est connecté
+  const banner = document.createElement("div");
+  banner.classList.add("editorsBanner");
+  banner.innerText = "Mode édition";
+  document.body.insertBefore(banner, document.body.firstChild);
+
+  // Masquer les filtres
+  const filterDiv = document.querySelector(".filters");
+  filterDiv.style.display = "none";
+
+  // Afficher le bouton d'édition après après le tag H2 de la section id "portfolio"
+  const editButton = document.createElement("button");
+  editButton.innerText = "Modifier";
+  editButton.classList.add("open-button", "open-modal");
+  const portfolioSection = document.getElementById("portfolio");
+  const h2Tag = portfolioSection.querySelector("h2");
+  portfolioSection.insertBefore(editButton, h2Tag.nextSibling);
+
 } else {
   // Afficher le lien de connexion
   const navLinks = document.querySelectorAll("header nav li");
