@@ -15,11 +15,11 @@ class API {
                 })
             });
             if (!loginResponse.ok) {
-                throw new Error('Login failed');
+                throw new Error('Échec de la connexion');
             }
             return loginResponse.json();
         } catch (error) {
-            console.error('Error during login:', error);
+            console.error('Erreur lors de la connexion:', error);
             throw error;
         }
     }
@@ -28,7 +28,7 @@ class API {
             const worksResponse = await fetch(`${this.baseUrl}/works`);
             return worksResponse.json();
         } catch (error) {
-            console.error('Error during fetching works:', error);
+            console.error('Erreur lors de la récupération des travaux:', error);
             throw error;
         }
     }
@@ -37,7 +37,7 @@ class API {
             const categoriesResponse = await fetch(`${this.baseUrl}/categories`);
             return categoriesResponse.json();
         } catch (error) {
-            console.error('Error during fetching categories:', error);
+            console.error('Erreur lors de la récupération des catégories:', error);
             throw error;
         }
     }
