@@ -21,8 +21,14 @@ function displayWorksInModal() {
       const workImage = document.createElement("img");
       workImage.src = work.imageUrl;
       modalGalleryElement.style.backgroundImage = `url(${workImage.src})`;
+      const modalDeleteWorkButton = document.createElement("button");
+      modalDeleteWorkButton.innerText = "supprimer le projet";
+      modalDeleteWorkButton.classList.add("deleteWorkButton");
+      modalDeleteWorkButton.addEventListener("click", () => {
+        console.log("delete work", work.id);
+      });
       modalGallery.appendChild(modalGalleryElement);
-
+      modalGalleryElement.appendChild(modalDeleteWorkButton);
     
     });
   });
