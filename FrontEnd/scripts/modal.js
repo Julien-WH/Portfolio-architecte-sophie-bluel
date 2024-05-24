@@ -1,7 +1,7 @@
 const modal = document.querySelector("#modal");
 const openModal = document.querySelector(".open-modal");
 const closeModal = document.querySelector(".close-modal");
-import { works } from "./gallery.js";
+import { works } from "../assets/js/gallery.js";
 
 openModal.addEventListener("click", () => {
   modal.showModal();

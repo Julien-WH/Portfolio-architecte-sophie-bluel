@@ -1,13 +1,20 @@
 import { checkAuthentification } from "../assets/js/checkAuth.js";
-
+import { displayWorks, displayCategoriesFilters } from "../assets/js/gallery.js";
 // Vérifie si l'utilisateur est connecté
 if (checkAuthentification()) {
+  // Si la section #portfolio existe, lancer les fonctions suivantes
   if (document.getElementById("portfolio")) {
     showEditBanner();
     hideFilters();
     addEditButton();
     hideFilters();
   }
+}
+
+// Si la section #portfolio existe, afficher la gallerie
+if (document.getElementById("portfolio")) {
+  displayCategoriesFilters();
+  displayWorks();
 }
 
 // Fonction pour afficher la bannière du mode édition
