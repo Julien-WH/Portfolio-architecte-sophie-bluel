@@ -1,45 +1,52 @@
-// Vérifier si le token est présent dans le localStorage
-const token = localStorage.getItem("token");
-const tokenStatus = token !== null;
+import { checkAuthentification } from "../assets/js/checkAuth.js";
 
-// Si l'utilisateur est connecté
-if (tokenStatus === true) {
-  // Afficher le bouton de déconnexion si l'utilisateur est connecté
-  const navLinks = document.querySelectorAll("header nav li");
-  const logoutLink = document.createElement("a");
-  logoutLink.href = "#";
-  logoutLink.innerText = "Déconnexion";
-  navLinks[2].innerHTML = "";
-  navLinks[2].appendChild(logoutLink);
-  logoutLink.addEventListener("click", () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  });
+// Vérifie si l'utilisateur est connecté
+if (checkAuthentification()) {
+  if (document.getElementById("portfolio")) {
+    showEditBanner();
+    hideFilters();
+    addEditButton();
+    hideFilters();
+  }
+}
 
-  // Afficher la bannière du mode édition si l'utilisateur est connecté
+// Fonction pour afficher la bannière du mode édition
+function showEditBanner() {
   const banner = document.createElement("div");
+  const bannerSpacer = document.createElement("div");
+  bannerSpacer.classList.add("editorsBannerSpacer");
+
   banner.classList.add("editorsBanner");
-  banner.innerText = "Mode édition";
+  document.body.insertBefore(bannerSpacer, document.body.firstChild);
+
+  banner.innerHTML = `
+  <a href="#"><i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p></a>
+  `;
   document.body.insertBefore(banner, document.body.firstChild);
+}
 
-  // Masquer les filtres
-  const filterDiv = document.querySelector(".filters");
-  filterDiv.style.display = "none";
+// Fonction pour masquer les filtres
+function hideFilters() {
+  const filtersElement = document.querySelector(".filters");
+  if (filtersElement) {
+    filtersElement.style.display = "none";
+  }
+}
 
-  // Afficher le bouton d'édition après après le tag H2 de la section id "portfolio"
+// Fonction pour ajouter le bouton d'édition
+function addEditButton() {
+  const galleryHeaderWrapper = document.createElement("div");
+  galleryHeaderWrapper.classList.add("galleryHeaderAdmin");
+
   const editButton = document.createElement("button");
-  editButton.innerText = "Modifier";
-  editButton.classList.add("open-button", "open-modal");
-  const portfolioSection = document.getElementById("portfolio");
-  const h2Tag = portfolioSection.querySelector("h2");
-  portfolioSection.insertBefore(editButton, h2Tag.nextSibling);
+  editButton.innerHTML = `<i class="fa-regular fa-pen-to-square"></i> Modifier`;
+  editButton.classList.add("openButton", "openModal");
 
-} else {
-  // Afficher le lien de connexion
-  const navLinks = document.querySelectorAll("header nav li");
-  const loginLink = document.createElement("a");
-  loginLink.href = "login.html";
-  loginLink.innerText = "login";
-  navLinks[2].innerHTML = "";
-  navLinks[2].appendChild(loginLink);
+  const portfolioSectionH2 = document.querySelector("#portfolio h2");
+  portfolioSectionH2.parentNode.insertBefore(
+    galleryHeaderWrapper,
+    portfolioSectionH2.nextSibling
+  );
+  galleryHeaderWrapper.appendChild(portfolioSectionH2);
+  galleryHeaderWrapper.appendChild(editButton);
 }
