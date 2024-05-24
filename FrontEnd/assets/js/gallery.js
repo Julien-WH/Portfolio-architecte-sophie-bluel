@@ -26,9 +26,13 @@ export async function displayCategoriesFilters() {
   // Bouton filtre "Tous"
   const allFiltersButton = document.createElement("button");
   allFiltersButton.innerText = "Tous";
+  allFiltersButton.classList.add("active");
   allFiltersButton.addEventListener("click", () => {
     worksGallerySection.innerHTML = "";
     displayWorks();
+    let previouslySelected = document.querySelectorAll(".filters button.active");
+    previouslySelected ? previouslySelected.forEach((button) => button.classList.remove("active")) : null;
+    allFiltersButton.classList.add("active");
   });
   filtersDiv.appendChild(allFiltersButton);
 
@@ -39,6 +43,10 @@ export async function displayCategoriesFilters() {
     filterButton.innerText = category.name;
     filterButton.addEventListener("click", () => {
       worksGallerySection.innerHTML = "";
+      let selectedCategory = category.id;
+      let previouslySelected = document.querySelectorAll(".filters button.active"); 
+      previouslySelected ? previouslySelected.forEach((button) => button.classList.remove("active")) : null;
+      filterButton.classList.add("active");
       displayWorks(category.id);
     });
     filtersDiv.appendChild(filterButton);
