@@ -168,6 +168,12 @@ h2 {
   font-size: 30px;
   color: #1d6154;
 }
+
+.loginSection {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
 nav ul {
   display: flex;
   align-items: center;
@@ -351,4 +357,36 @@ footer nav ul {
   right : 33.5%;
   top: 9px;
   
+}
+
+/* * Formulaire de connexion */
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: auto;
+  width: 379px;
+}
+
+.loginForm input:first-of-type {
+  margin-bottom: 23px;
+}
+
+.loginForm label {
+  font-weight: 500;
+  color: #3D3D3D;
+}
+
+.loginForm input {
+  box-sizing: border-box;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 5px;
+}
+
+.loginForm a:last-child {
+  align-self: center;
+  color: #3D3D3D;
+  font-weight: 500;
 }

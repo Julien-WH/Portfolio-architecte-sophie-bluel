@@ -1,6 +1,6 @@
 import { checkAuthentification } from "../assets/js/checkAuth.js";
 
-const loginForm = document.getElementById("loginForm");
+const loginForm = document.getElementById("loginFormDiv");
 const loginInput = document.getElementById("loginInput");
 const passwordInput = document.getElementById("passwordInput");
 
@@ -26,7 +26,7 @@ if (checkAuthentification()) {
   mainTag.insertBefore(connectedMessage, H2tag.nextSibling);
   loginForm.style.display = "none";
 } else {
-    const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById("loginFormDiv");
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const login = loginInput.value;
