@@ -336,8 +336,12 @@ footer nav ul {
   grid-row-gap: 20px;
 }
 
-.modalGallery img {
+.modalGalleryElement {
   width: 78px;
+  height: 104px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* * Bouton modal */

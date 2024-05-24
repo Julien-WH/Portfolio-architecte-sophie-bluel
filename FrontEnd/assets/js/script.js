@@ -1,5 +1,6 @@
 import { checkAuthentification } from "./checkAuth.js";
 import { displayWorks, displayCategoriesFilters } from "./gallery.js";
+import { displayModal } from "./modal.js";
 // Vérifie si l'utilisateur est connecté
 if (checkAuthentification()) {
   // Si la section #portfolio existe, lancer les fonctions suivantes
@@ -10,7 +11,6 @@ if (checkAuthentification()) {
     hideFilters();
   }
 }
-
 // Si la section #portfolio existe, afficher la gallerie
 if (document.getElementById("portfolio")) {
   displayCategoriesFilters();
@@ -56,4 +56,9 @@ function addEditButton() {
   );
   galleryHeaderWrapper.appendChild(portfolioSectionH2);
   galleryHeaderWrapper.appendChild(editButton);
+  editButton.addEventListener("click", () => {
+    modal.showModal();
+    displayModal();
+  });
 }
+
