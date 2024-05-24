@@ -1,5 +1,5 @@
-import { checkAuthentification } from "../assets/js/checkAuth.js";
-import { displayWorks, displayCategoriesFilters } from "../assets/js/gallery.js";
+import { checkAuthentification } from "./checkAuth.js";
+import { displayWorks, displayCategoriesFilters } from "./gallery.js";
 // Vérifie si l'utilisateur est connecté
 if (checkAuthentification()) {
   // Si la section #portfolio existe, lancer les fonctions suivantes
