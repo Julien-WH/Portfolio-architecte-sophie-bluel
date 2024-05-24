@@ -9,7 +9,7 @@ export const checkAuthentification = () => {
         if (navLoginLink) {
             const logoutLink = document.createElement('a');
             logoutLink.href = '#';
-            logoutLink.innerText = 'Déconnexion';
+            logoutLink.innerText = 'logout';
 
             // Effacer le contenu de navLoginLink et y ajouter logoutLink
             navLoginLink.innerHTML = '';
