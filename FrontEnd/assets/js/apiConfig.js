@@ -4,7 +4,7 @@ class API {
     }
     async login(email, password) {
         try {
-            const response = await fetch(`${this.baseUrl}/users/login`, {
+            const loginResponse = await fetch(`${this.baseUrl}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -14,10 +14,10 @@ class API {
                     password: password
                 })
             });
-            if (!response.ok) {
+            if (!loginResponse.ok) {
                 throw new Error('Login failed');
             }
-            return response.json();
+            return loginResponse.json();
         } catch (error) {
             console.error('Error during login:', error);
             throw error;
