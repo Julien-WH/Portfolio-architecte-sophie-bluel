@@ -1,12 +1,12 @@
 const modal = document.getElementById("modal"); // Récupérer la modale
-const closeModal = document.querySelector(".close-modal"); // Récupérer le bouton pour fermer la modale
+const closeModalButton = document.querySelector(".closeModalButton"); // Récupérer le bouton pour fermer la modale
 import API from "./apiConfig.js";
 export function displayModal() {
   displayWorksInModal();
 }
 
 // Fermer la modale
-closeModal.addEventListener("click", () => {
+closeModalButton.addEventListener("click", () => {
   modal.close();
 });
 

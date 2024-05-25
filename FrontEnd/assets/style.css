@@ -226,8 +226,17 @@ li:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;;
+  margin-bottom: 1em;
 }
+
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
 .gallery {
   width: 100%;
   display: grid;
@@ -304,7 +313,7 @@ footer nav ul {
   background-color: black;
   height: 59px;
   font-size: 1rem;
-  }
+}
 
 .editorsBanner a {
   display: flex;
@@ -316,10 +325,9 @@ footer nav ul {
   height: 59px;
 }
 
-/* Modal */
+/* * Modal */
 .adminModal {
   box-sizing: border-box;
-  width: 630px;
   border-radius: 10px;
   border: none;
   padding: 60px 105px 45px 105px;
@@ -332,8 +340,10 @@ footer nav ul {
 .modalGallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-column-gap: 9px;
+  grid-row-gap: 25px;
+  padding-top: 46px;
+  padding-bottom: 65px;
 }
 
 .modalGalleryElement {
@@ -344,7 +354,19 @@ footer nav ul {
   background-repeat: no-repeat;
 }
 
-/* * Bouton modal */
+dialog h3 {
+  font-family: "Work Sans";
+  font-size: 1.625rem;
+  text-align: center;
+}
+
+.adminModal hr {
+  margin: 0;
+  border: 1px solid #b3b3b3;
+  border-top: none;
+}
+
+/* * Boutons modal */
 .openModal {
   color: black;
   background: none;
@@ -352,6 +374,60 @@ footer nav ul {
   font-family: "Work Sans";
   cursor: pointer;
   padding: 0;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-family: "Work Sans";
+  cursor: pointer;
+  padding: 0;
+  font-size: 0;
+}
+
+.closeModalButton::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00d";
+  font-size: 1rem;
+  padding: 4px 6px;
+}
+
+.modalAddButton {
+  display: block;
+  margin: auto;
+  margin-top: 38px;
+  font-family: "Syne";
+  color: white;
+  background-color: #1d6154;
+  border: none;
+  border-radius: 60px;
+  padding: 9px 49px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.deleteWorkButton {
+  display: block;
+  font-size: 0px;
+  background-color: black;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 3px 4px;
+  margin: 6px 6px 0 auto;
+}
+
+.deleteWorkButton::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f2ed";
+  color: white;
+  font-size: 0.688rem;
 }
 
 /* * Header de la gallerie une fois connecté */
@@ -363,9 +439,8 @@ footer nav ul {
 }
 .galleryHeaderAdmin button {
   position: absolute;
-  right : 33.5%;
+  right: 33.5%;
   top: 9px;
-  
 }
 
 /* * Formulaire de connexion */
@@ -383,7 +458,7 @@ footer nav ul {
 
 .loginForm label {
   font-weight: 500;
-  color: #3D3D3D;
+  color: #3d3d3d;
 }
 
 .loginForm input {
@@ -396,7 +471,7 @@ footer nav ul {
 
 .loginForm a:last-child {
   align-self: center;
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-weight: 500;
 }
 
@@ -409,12 +484,12 @@ footer nav ul {
 }
 
 .connectedDiv a {
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-weight: 500;
 }
 
 .connectedDiv a:hover {
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-weight: 700;
 }
 
@@ -424,28 +499,26 @@ footer nav ul {
   margin-top: 10px;
   text-align: center;
   font-weight: 700;
-} 
+}
 .filters {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-bottom: 50px;
   margin-top: 60px;
-
 }
 .filters button {
   cursor: pointer;
-  background-color: #FFFEF8;
-  color: #1D6154;
+  background-color: #fffef8;
+  color: #1d6154;
   border-radius: 60px;
-  border: 1px solid #1D6154;
+  border: 1px solid #1d6154;
   padding: 9px 20px;
   font-size: 1rem;
   font-weight: 700;
-  
 }
 
 .filters .active {
-  background-color: #1D6154;
+  background-color: #1d6154;
   color: white;
 }
