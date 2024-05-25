@@ -41,6 +41,20 @@ class API {
             throw error;
         }
     }
+    async deleteWork(workId) {
+        try {
+            const deleteResponse = await fetch(`${this.baseUrl}/works/${workId}`, {
+                method: 'DELETE',
+                headers: { 
+                    accept: "*/*",
+                    Authorization: `bearer ${localStorage.getItem('token')}`
+                }
+            });
+        } catch (error) {
+            console.error('Erreur lors de la suppression du projet:', error);
+            throw error;
+        }
+    };
 }
 
 export default API;

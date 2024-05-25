@@ -424,7 +424,6 @@ dialog h3 {
 
 .deleteWorkButton::before {
   font-family: "Font Awesome 5 Free";
-  font-weight: 900;
   content: "\f2ed";
   color: white;
   font-size: 0.688rem;

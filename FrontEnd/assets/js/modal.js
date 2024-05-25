@@ -25,7 +25,12 @@ function displayWorksInModal() {
       modalDeleteWorkButton.innerText = "supprimer le projet";
       modalDeleteWorkButton.classList.add("deleteWorkButton");
       modalDeleteWorkButton.addEventListener("click", () => {
-        console.log("delete work", work.id);
+        new API().deleteWork(work.id)
+          .then(() => {
+            modalGalleryElement.remove();
+          });
+        displayModal();
+
       });
       modalGallery.appendChild(modalGalleryElement);
       modalGalleryElement.appendChild(modalDeleteWorkButton);
