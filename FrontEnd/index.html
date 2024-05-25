@@ -18,11 +18,44 @@
 <body>
 	<!-- * Modale d'admin * -->
 	<dialog class="adminModal modal" id="modal">
-		<button class="close-button closeModalButton icon">Fermer la fenêtre</button>
-		<h3>Galerie photo</h3>
-		<div class="modalGallery"></div>
-		<hr>
-		<button class="modalAddButton">Ajouter une photo</button>
+		<div class="modal1" >
+			<button class="close-button closeModalButton icon">Fermer la fenêtre</button>
+			<h3>Galerie photo</h3>
+			<div class="modalGallery"></div>
+			<hr>
+			<button class="modalAddButton">Ajouter une photo</button>
+		</div>
+		<div class="modal2" style="display: none;">
+			<button class="close-button closeModalButton icon">Fermer la fenêtre</button>
+			<button class="modalBackButton">Retour en arrière</button>
+			<h3>Ajout photo</h3>
+			<form action="#" method="post" id="addPhotoForm">
+				<div class="uploadContainer">
+					<div class="uploadArea">
+						<div class="uploadIcon"><i class="fa-regular fa-image"></i></div>
+
+						<button class="uploadButton">+ Ajouter photo</button>
+						<input type="file" hidden />
+
+						<span>jpg, png : 4mo max</span>
+					</div>
+					<label for="title">Titre</label>
+					<input type="text" name="title" id="title">
+					<label for="category">Catégorie</label>
+					<div class="customSelectContainer">
+						<select name="category" id="category">
+							<option value="cuisine">Cuisine</option>
+							<option value="salon">Salon</option>
+							<option value="chambre">Chambre</option>
+							<option value="salle de bain">Salle de bain</option>
+							<option value="extérieur">Extérieur</option>
+						</select>
+						<i class="fa-solid fa-chevron-down customSelectArrow"></i>
+					</div>
+					<hr>
+					<input type="submit" value="Valider">
+				</div>
+			</form>
 	</dialog>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -80,6 +113,7 @@
 	</footer>
 
 	<script type="module" src="/assets/js/script.js"></script>
+	<script type="module" src="/assets/js/addWork.js"></script>
 	<!-- <script type="module" src="./scripts/gallery.js"></script>
 	<script type="module" src="./scripts/modal.js"></script> -->
 </body>

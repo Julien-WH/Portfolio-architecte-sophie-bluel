@@ -382,7 +382,6 @@ dialog h3 {
   right: 24px;
   background: none;
   border: none;
-  font-family: "Work Sans";
   cursor: pointer;
   padding: 0;
   font-size: 0;
@@ -394,6 +393,25 @@ dialog h3 {
   content: "\f00d";
   font-size: 1rem;
   padding: 4px 6px;
+}
+
+.modalBackButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  padding: 3px;
+
+}
+
+.modalBackButton::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f060";
+  font-size: 1.313rem;
 }
 
 .modalAddButton {
@@ -427,6 +445,105 @@ dialog h3 {
   content: "\f2ed";
   color: white;
   font-size: 0.688rem;
+}
+
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 500;
+  color: #3D3D3D;
+}
+
+.uploadContainer input, label, select {
+  color: #3D3D3D;
+  font-family: "Work Sans";
+  font-size: 0.875rem;
+}
+
+.uploadContainer input:last-child {
+  color: white;
+  font-family: "Syne";
+  font-weight: 700;
+  padding: 10px 50px;
+  margin-block: 0;
+  background-color: #A7A7A7;
+}
+
+.uploadContainer input:last-child .valid {
+  background-color: #1d6154;
+}
+
+.uploadContainer hr {
+  margin-block: 37px 22px;
+}
+
+.uploadContainer input, select {
+  padding: 17px;
+  border: none;
+  box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.uploadContainer select {
+  appearance: none;
+  width: 100%;
+}
+.customSelectContainer {
+  position: relative;
+
+}
+.customSelectArrow {
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 1.1rem;
+  right: 1.813rem;
+}
+.uploadArea {
+  background-color: #E8F1F6;
+  border-radius: 3px;
+  padding: 20px 10px;
+  margin: 36px 0 20px 0;
+  width: 420px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #E8F1F6;
+
+}
+.uploadArea.active {
+  border: 1px dashed #306685;
+  color: white;
+}
+.uploadArea img {
+  object-fit: cover;
+  max-height: 170px;
+  max-width: 442px;
+}
+
+.uploadIcon {
+  font-size: 75px;
+  color: #B9C5CC;
+}
+
+.uploadButton {
+  background-color: #CBD6DC;
+  color: #306685;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: "Work Sans";
+  border: none;
+  border-radius: 50px;
+  padding: 10px 33px;
+}
+
+
+
+.uploadContainer span {
+  font-family: "Work Sans";
+  font-size: 0.625rem;
+  color: #444444;
 }
 
 /* * Header de la gallerie une fois connecté */
