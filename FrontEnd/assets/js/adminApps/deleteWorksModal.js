@@ -1,15 +1,10 @@
-const modal = document.getElementById("modal"); // Récupérer la modale
-const closeModalButton = document.querySelector(".closeModalButton"); // Récupérer le bouton pour fermer la modale
-import API from "./apiConfig.js";
+
+import API from "../apiConfig.js";
 export function displayModal() {
   displayWorksInModal();
 }
 
-// Fermer la modale
-closeModalButton.addEventListener("click", () => {
-  modal.close();
-});
-
+// Afficher les travaux dans la modale
 function displayWorksInModal() {
   const modalGallery = document.querySelector(".modalGallery");
   modalGallery.innerHTML = "";
@@ -38,6 +33,9 @@ function displayWorksInModal() {
     });
   });
 }
+
+
+
 // const modal = document.querySelector("#modal");
 // const openModal = document.querySelector(".open-modal");
 // const closeModal = document.querySelector(".close-modal");

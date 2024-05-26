@@ -41,8 +41,9 @@ dropArea.addEventListener("drop", (event) => {
 function showFile(){
     let fileType = file.type;
     let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+    let maxSize = 4000000; // 4MB
     
-    if (validExtensions.includes(fileType)) {
+    if (validExtensions.includes(fileType) && file.size <= maxSize) {
         let fileReader = new FileReader();
         
         fileReader.onload = () => {
@@ -52,7 +53,20 @@ function showFile(){
         };
         fileReader.readAsDataURL(file);
     } else {
-        alert("Format de fichier invalide. Les formats valides sont: .jpeg, .jpg, .png");
+        if (!validExtensions.includes(fileType)) {
+            // alert("Format de fichier invalide. Les formats valides sont: .jpeg, .jpg, .png");
+            const FormatErrorMsg = document.createElement("div");
+            FormatErrorMsg.classList.add("errorMsg");
+            FormatErrorMsg.innerHTML = "Format de fichier invalide. Les formats valides sont: .jpeg, .jpg, .png";
+            dropArea.appendChild(FormatErrorMsg);
+        } 
+        if (file.size > maxSize) {
+            // alert("Taille maximale autorisée: 4MB");
+            const SizeErrorMsg = document.createElement("div");
+            SizeErrorMsg.classList.add("errorMsg");
+            SizeErrorMsg.innerHTML = "Taille maximale autorisée: 4MB";
+            dropArea.appendChild(SizeErrorMsg);
+        }
         dropArea.classList.remove("active");
         dragText.textContent = "+ Ajouter photo";
     }

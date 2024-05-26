@@ -304,7 +304,7 @@ footer nav ul {
 /* Bannière d'édition */
 .editorsBanner {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
   display: flex;
@@ -427,6 +427,11 @@ dialog h3 {
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.modalHidden {
+  display: none;
+
 }
 
 .deleteWorkButton {
@@ -609,9 +614,9 @@ dialog h3 {
   font-weight: 700;
 }
 
-.errorLoginMessage {
+.errorLoginMessage, .errorMsg {
   color: red;
-  font-size: 1rem;
+  font-size: 0.750rem;
   margin-top: 10px;
   text-align: center;
   font-weight: 700;
