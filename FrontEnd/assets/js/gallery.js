@@ -43,7 +43,6 @@ export async function displayCategoriesFilters() {
     filterButton.innerText = category.name;
     filterButton.addEventListener("click", () => {
       worksGallerySection.innerHTML = "";
-      let selectedCategory = category.id;
       let previouslySelected = document.querySelectorAll(".filters button.active"); 
       previouslySelected ? previouslySelected.forEach((button) => button.classList.remove("active")) : null;
       filterButton.classList.add("active");

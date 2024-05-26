@@ -343,7 +343,6 @@ footer nav ul {
   grid-column-gap: 9px;
   grid-row-gap: 25px;
   padding-top: 46px;
-  padding-bottom: 65px;
 }
 
 .modalGalleryElement {
@@ -414,16 +413,16 @@ dialog h3 {
   font-size: 1.313rem;
 }
 
-.modalAddButton {
+.modalButton {
   display: block;
   margin: auto;
-  margin-top: 38px;
   font-family: "Syne";
   color: white;
   background-color: #1d6154;
   border: none;
   border-radius: 60px;
-  padding: 9px 49px;
+  padding-block: 9px;
+  width: 14.813rem;
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
@@ -466,21 +465,13 @@ dialog h3 {
   font-size: 0.875rem;
 }
 
-.uploadContainer input:last-child {
-  color: white;
-  font-family: "Syne";
-  font-weight: 700;
-  padding: 10px 50px;
-  margin-block: 0;
+.addPhotoButton:disabled {
   background-color: #A7A7A7;
+  cursor: default;
 }
 
-.uploadContainer input:last-child .valid {
-  background-color: #1d6154;
-}
-
-.uploadContainer hr {
-  margin-block: 37px 22px;
+.modal hr {
+  margin-block: 35px;
 }
 
 .uploadContainer input, select {
@@ -543,7 +534,11 @@ dialog h3 {
   padding: 10px 33px;
 }
 
-
+.uploadSuccessMessage {
+  color: #306685;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
 
 .uploadContainer span {
   font-family: "Work Sans";

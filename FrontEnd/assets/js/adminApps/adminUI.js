@@ -13,12 +13,12 @@ closeModalButton.forEach(button => {
         modal.close();
     });
 });
-    // Fermer la modale en cliquant en dehors de la modale
-modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-        modal.close();
-    }
-});
+//     // Fermer la modale en cliquant en dehors de la modale
+// modal.addEventListener("click", (event) => {
+//     if (event.target === modal) {
+//         modal.close();
+//     }
+// });
 
 // Fonction pour afficher la bannière du mode édition
 export function showEditBanner() {

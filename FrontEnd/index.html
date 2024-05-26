@@ -23,37 +23,32 @@
 			<h3>Galerie photo</h3>
 			<div class="modalGallery"></div>
 			<hr>
-			<button class="modalAddButton">Ajouter une photo</button>
+			<button class="modalButton modalAddButton">Ajouter une photo</button>
 		</div>
 		<div class="modal2 modalHidden">
 			<button class="close-button closeModalButton icon">Fermer la fenêtre</button>
 			<button class="modalBackButton">Retour en arrière</button>
 			<h3>Ajout photo</h3>
-			<form action="#" method="post" id="addPhotoForm">
+			<form action="#" method="post" id="addPhotoForm" enctype="multipart/form-data">
 				<div class="uploadContainer">
 					<div class="uploadArea">
 						<div class="uploadIcon"><i class="fa-regular fa-image"></i></div>
 
 						<button class="uploadButton">+ Ajouter photo</button>
-						<input type="file" hidden />
+						<input type="file" id="addWorkInputFile" hidden />
 
 						<span>jpg, png : 4mo max</span>
 					</div>
 					<label for="title">Titre</label>
-					<input type="text" name="title" id="title">
+					<input type="text" name="title" id="inputTitle">
 					<label for="category">Catégorie</label>
 					<div class="customSelectContainer">
-						<select name="category" id="category">
-							<option value="cuisine">Cuisine</option>
-							<option value="salon">Salon</option>
-							<option value="chambre">Chambre</option>
-							<option value="salle de bain">Salle de bain</option>
-							<option value="extérieur">Extérieur</option>
+						<select name="category" id="inputSelectCategory">
 						</select>
 						<i class="fa-solid fa-chevron-down customSelectArrow"></i>
 					</div>
 					<hr>
-					<input type="submit" value="Valider">
+					<button class="modalButton addPhotoButton" disabled>Valider</button>
 				</div>
 			</form>
 	</dialog>

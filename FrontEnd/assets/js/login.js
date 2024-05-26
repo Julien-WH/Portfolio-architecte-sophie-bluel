@@ -32,6 +32,7 @@ async function adminLogin() {
     try {
       const response = await api.login(email, password);
       localStorage.setItem("token", response.token);
+      localStorage.setItem("userId", response.userId);
       window.location.replace("index.html");
     } catch (error) {
       // Afficher un message d'erreur
