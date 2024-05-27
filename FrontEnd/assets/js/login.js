@@ -1,6 +1,7 @@
 import API from "./apiConfig.js";
 import { checkAuthentification } from "./checkAuth.js";
 
+// Verifier si l'utilisateur est connecté
 if (checkAuthentification()) {
   displayConnectedDiv();
 } else {
@@ -21,9 +22,9 @@ function displayConnectedDiv() {
 
 // Connexion de l'administrateur
 async function adminLogin() {
-    const loginForm = document.getElementById("loginFormDiv");
-    const loginInput = document.getElementById("loginInput");
-    const passwordInput = document.getElementById("passwordInput");
+  const loginForm = document.getElementById("loginFormDiv");
+  const loginInput = document.getElementById("loginInput");
+  const passwordInput = document.getElementById("passwordInput");
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = loginInput.value;
@@ -35,15 +36,19 @@ async function adminLogin() {
       localStorage.setItem("userId", response.userId);
       window.location.replace("index.html");
     } catch (error) {
-      // Afficher un message d'erreur
-      const errorMessage = document.querySelector(".errorLoginMessage");
-      if (errorMessage) {
-        errorMessage.remove();
-      }
-      const newErrorMessage = document.createElement("p");
-      newErrorMessage.innerText = "Erreur lors de la connexion";
-      newErrorMessage.classList.add("errorLoginMessage");
-      loginForm.insertAdjacentElement("beforebegin", newErrorMessage);
+      displayErrorMessage(loginForm, "Erreur lors de la connexion");
     }
   });
+}
+
+// Afficher un message d'erreur
+function displayErrorMessage(element, message) {
+  const errorMessage = document.querySelector(".errorLoginMessage");
+  if (errorMessage) {
+    errorMessage.remove();
+  }
+  const newErrorMessage = document.createElement("p");
+  newErrorMessage.innerText = message;
+  newErrorMessage.classList.add("errorLoginMessage");
+  element.insertAdjacentElement("beforebegin", newErrorMessage);
 }
