@@ -25,7 +25,7 @@ class API {
   }
   async fetchWorks() {
     try {
-      const worksResponse = await fetch(`${this.baseUrl}/works`);
+      const worksResponse = await fetch(this.baseUrl + "/works/");
       return worksResponse.json();
     } catch (error) {
       console.error("Erreur lors de la récupération des travaux:", error);
@@ -34,7 +34,7 @@ class API {
   }
   async fetchCategories() {
     try {
-      const categoriesResponse = await fetch(`${this.baseUrl}/categories`);
+      const categoriesResponse = await fetch(this.baseUrl +  "/categories");
       return categoriesResponse.json();
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
@@ -43,7 +43,7 @@ class API {
   }
   async deleteWork(workId) {
     try {
-      const deleteResponse = await fetch(`${this.baseUrl}/works/${workId}`, {
+      const deleteResponse = await fetch(this.baseUrl + "/works/" + workId, {
         method: "DELETE",
         headers: {
           accept: "*/*",
@@ -58,7 +58,7 @@ class API {
 
   async addWork(formData) {
       try {
-          const addResponse = await fetch(`${this.baseUrl}/works`, {
+          const addResponse = await fetch(this.baseUrl + "/works", {
               method: "POST",
               headers: {
                   accept: 'application/json',
@@ -72,16 +72,6 @@ class API {
           throw error;
       }
   }
-//   async addWork(formData) {
-//     const addWorkReponse = await fetch(`${this.baseUrl}/works/`, {
-//       method: "POST",
-//       body: formData,
-//       headers: {
-//         accept: "application/json",
-//         Authorization: `bearer ${localStorage.getItem('token')}`
-//       },
-//     });
-//   }
 }
 
 export default API;
