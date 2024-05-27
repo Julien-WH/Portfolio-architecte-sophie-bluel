@@ -85,5 +85,4 @@ modalAddWorkButton.addEventListener("click", () => {
 modalBackButton.addEventListener("click", () => {
   deleteWorkModal.classList.remove("modalHidden");
   addWorkModal.classList.add("modalHidden");
-  displayWorksInModal();
 });
