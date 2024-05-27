@@ -116,6 +116,7 @@ function showFile() {
     uploadButton.disabled = !isFormValid;
     return isFormValid;
   }
+  
 // Ajouter un event listener
 function addListener(element, event, handler) {
     element.addEventListener(event, handler);
