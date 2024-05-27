@@ -249,10 +249,6 @@ li:hover {
   grid-row-gap: 20px;
 }
 
-.gallery figure {
-
-}
-
 .gallery img {
   object-fit: cover;
   width: 100%;
