@@ -1,151 +1,75 @@
 import API from "./apiConfig.js";
+
+// DOM
 const worksGallerySection = document.querySelector("#portfolio .gallery");
 const filtersDiv = document.querySelector("#portfolio .filters");
 
+// Nouvelle instance de l'API
+const api = new API();
+
+// Affichage des travaux dans la galerie
 export async function displayWorks(categoryId) {
   worksGallerySection.innerHTML = "";
-  const api = new API();
+
   const works = await api.fetchWorks();
-  // Afficher les travaux dans la galerie
-  works.forEach((work) => {
-    if (!categoryId || work.categoryId === categoryId) {
-      const figure = document.createElement("figure");
-      const workImage = document.createElement("img");
-      workImage.src = work.imageUrl;
-      workImage.alt = work.title;
-      const workTitle = document.createElement("figcaption");
-      workTitle.innerText = work.title;
-      figure.appendChild(workImage);
-      figure.appendChild(workTitle);
-      worksGallerySection.appendChild(figure);
-    }
-  });
+
+  works.filter(work => !categoryId || work.categoryId === categoryId)
+       .forEach(work => {
+         const figure = createFigureElement(work);
+
+         worksGallerySection.appendChild(figure);
+       });
 }
 
+// Fonction pour créer un élément figure pour un projet
+function createFigureElement(work) {
+  const figure = document.createElement("figure");
+  const workImage = document.createElement("img");
+  const workTitle = document.createElement("figcaption");
+
+  workImage.src = work.imageUrl;
+  workImage.alt = work.title;
+  workTitle.innerText = work.title;
+
+  figure.appendChild(workImage);
+  figure.appendChild(workTitle);
+
+  return figure;
+}
+
+// Afficher les filtres de catégories
 export async function displayCategoriesFilters() {
-  const api = new API();
-  // Bouton filtre "Tous"
-  const allFiltersButton = document.createElement("button");
-  allFiltersButton.innerText = "Tous";
-  allFiltersButton.classList.add("active");
-  allFiltersButton.addEventListener("click", () => {
-    worksGallerySection.innerHTML = "";
-    displayWorks();
-    let previouslySelected = document.querySelectorAll(".filters button.active");
-    previouslySelected ? previouslySelected.forEach((button) => button.classList.remove("active")) : null;
-    allFiltersButton.classList.add("active");
-  });
-  filtersDiv.appendChild(allFiltersButton);
+  // Création et ajout du bouton "Tous"
+  const allButton = createFilterButton("Tous", () => displayWorks(), true);
+  filtersDiv.appendChild(allButton);
 
-  // Boutons filtres pour chaque catégorie
+  // Récupération des catégories
   const categories = await api.fetchCategories();
-  categories.forEach((category) => {
-    const filterButton = document.createElement("button");
-    filterButton.innerText = category.name;
-    filterButton.addEventListener("click", () => {
-      worksGallerySection.innerHTML = "";
-      let previouslySelected = document.querySelectorAll(".filters button.active"); 
-      previouslySelected ? previouslySelected.forEach((button) => button.classList.remove("active")) : null;
-      filterButton.classList.add("active");
-      displayWorks(category.id);
-    });
-    filtersDiv.appendChild(filterButton);
+
+  // Création et ajout des boutons de filtre pour chaque catégorie
+  categories.forEach(category => {
+    const button = createFilterButton(category.name, () => displayWorks(category.id), false);
+    filtersDiv.appendChild(button);
   });
 }
 
-//  export const works = await fetchWorks();
-//  export const categories = await fetchCategories();
-//  let selectedCategory
+// Création d'un bouton filtre et ajout d'un gestionnaire d'événements
+function createFilterButton(text, onClick, isActive) {
+  const button = document.createElement("button");
+  button.innerText = text;
+  if (isActive) {
+    button.classList.add("active");
+  }
+  button.addEventListener("click", () => {
+    clearActiveFilters();
+    onClick();
+    button.classList.add("active");
+  });
+  return button;
+}
 
-// // Récupérer les travaux dans l'api et les stocker dans une variable "works"
-// async function fetchWorks() {
-//   try {
-//     const worksResponse = await fetch("http://localhost:5678/api/works");
-//     const works = await worksResponse.json();
-//     return works;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// // Récupérer les catégories dans l'api et les stocker dans une variable "categories"
-// async function fetchCategories() {
-//   try {
-//     const categoriesResponse = await fetch(
-//       "http://localhost:5678/api/categories"
-//     );
-//     const categories = await categoriesResponse.json();
-//     return categories;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// const filtersDiv = document.querySelector("#portfolio .filters");
-// const worksGallerySection = document.querySelector("#portfolio .gallery");
-
-// // Vérifier si l'API a renvoyé les travaux et les catégories
-// if (works && categories) {
-
-//   // Afficher le bouton de filtre "Tous"
-//   const allButton = document.createElement("button");
-//   allButton.innerText = "Tous";
-//   allButton.addEventListener("click", () => {
-//     worksGallerySection.innerHTML = "";
-//     displayWorks();
-//   });
-//   filtersDiv.appendChild(allButton);
-
-//   // Afficher les boutons de filtre pour chaque catégorie
-//   categories.forEach((category) => {
-//     const filterButton = document.createElement("button");
-//     filterButton.innerText = category.name;
-//     filterButton.addEventListener("click", () => {
-//       displayWorks(category.id);
-//       return category.id === selectedCategory;
-//     });
-//     filtersDiv.appendChild(filterButton);
-//   });
-
-//   // Afficher les travaux dans la galerie par défaut
-//   displayWorks();
-// } else {
-
-//   // Afficher une erreur le cas échéant
-//   worksGallerySection.innerHTML = "Erreur de requête API";
-//   worksGallerySection.classList.add("error");
-// }
-
-// function displayWorks(selectedCategory) {
-//   if (selectedCategory) {
-//     worksGallerySection.innerHTML = "";
-//     works.forEach((work) => {
-//       if (work.categoryId === selectedCategory) {
-//         const figure = document.createElement("figure");
-//         const workImage = document.createElement("img");
-//         workImage.src = work.imageUrl;
-//         workImage.alt = work.title;
-//         const workTitle = document.createElement("figcaption");
-//         workTitle.innerText = work.title;
-
-//         figure.appendChild(workImage);
-//         figure.appendChild(workTitle);
-//         worksGallerySection.appendChild(figure);
-//       }
-//     });
-//   } else {
-//     worksGallerySection.innerHTML = "";
-//     works.forEach((work) => {
-//       const figure = document.createElement("figure");
-//       const workImage = document.createElement("img");
-//       workImage.src = work.imageUrl;
-//       workImage.alt = work.title;
-//       const workTitle = document.createElement("figcaption");
-//       workTitle.innerText = work.title;
-
-//       figure.appendChild(workImage);
-//       figure.appendChild(workTitle);
-//       worksGallerySection.appendChild(figure);
-//     });
-//   }
-// }
+// Supprimer la classe "active" des boutons de filtre
+function clearActiveFilters() {
+  const activeFilters = document.querySelectorAll(".filters button.active");
+  activeFilters.forEach(button => button.classList.remove("active"));
+}
