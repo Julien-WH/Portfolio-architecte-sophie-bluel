@@ -1,24 +1,28 @@
 import { displayModal } from "./deleteWorksModal.js";
+import { formReset } from "./addWorksModal.js";
 const modal = document.getElementById("modal"); // Récupérer la modale
-const closeModalButton = document.querySelectorAll(".closeModalButton"); 
-const modalAddWorkButton = document.querySelector(".modalAddButton"); 
+const closeModalButton = document.querySelectorAll(".closeModalButton");
+const modalAddWorkButton = document.querySelector(".modalAddButton");
 const deleteWorkModal = document.querySelector(".modal1");
 const addWorkModal = document.querySelector(".modal2");
 const modalBackButton = document.querySelector(".modalBackButton");
+const closeButton = document.querySelector(".closeButton");
 
 
 // Fermer la modale
-closeModalButton.forEach(button => {
-    button.addEventListener("click", () => {
-        modal.close();
-    });
+closeModalButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    modal.close();
+    formReset();
+  });
 });
-//     // Fermer la modale en cliquant en dehors de la modale
-// modal.addEventListener("click", (event) => {
-//     if (event.target === modal) {
-//         modal.close();
-//     }
-// });
+
+// Fermer la modale en cliquant en dehors de la modale
+modal.addEventListener("click", (event) => {
+  if (event.target == modal) {
+    modal.close();
+  }
+});
 
 // Fonction pour afficher la bannière du mode édition
 export function showEditBanner() {
@@ -30,9 +34,15 @@ export function showEditBanner() {
   document.body.insertBefore(bannerSpacer, document.body.firstChild);
 
   banner.innerHTML = `
-    <a href="#"><i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p></a>
+    <a href="#" class="openButton"><i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p></a>
     `;
   document.body.insertBefore(banner, document.body.firstChild);
+
+    const openButton = document.querySelector(".openButton");
+    openButton.addEventListener("click", () => {
+        modal.showModal();
+        displayModal();
+        });
 }
 
 // Ajouter le bouton d'édition de la galerie
@@ -67,12 +77,12 @@ export function hideFilters() {
 
 // Passage à l'ajout de travaux
 modalAddWorkButton.addEventListener("click", () => {
-    deleteWorkModal.classList.add("modalHidden");
-    addWorkModal.classList.remove("modalHidden");
+  deleteWorkModal.classList.add("modalHidden");
+  addWorkModal.classList.remove("modalHidden");
 });
 
 // Retour à la suppression de travaux
 modalBackButton.addEventListener("click", () => {
-    deleteWorkModal.classList.remove("modalHidden");
-    addWorkModal.classList.add("modalHidden");
+  deleteWorkModal.classList.remove("modalHidden");
+  addWorkModal.classList.add("modalHidden");
 });

@@ -150,13 +150,9 @@ function uploadData() {
         dropArea.appendChild(uploadMessage);
         displayWorks();
         setTimeout(() => {
-          uploadMessage.remove();
-          titleInput.value = "";
-          inputCategories.value = "";
-          fileInput.value = "";
-          dropArea.innerHTML = dropAreaSaved;
-          uploadButton.disabled = true;
-        }, 3000);
+            uploadMessage.remove();
+            formReset ();
+        }, 2000);
       }
     } catch (error) {
       const uploadMessage = document.createElement("div");
@@ -168,6 +164,14 @@ function uploadData() {
     }
   });
 }
+
+export function formReset() {
+    titleInput.value = "";
+    inputCategories.value = "";
+    fileInput.value = "";
+    dropArea.innerHTML = dropAreaSaved;
+    uploadButton.disabled = true;
+} 
 // // affiche dans la console des éléments récupérés
 // console.log("Titre:", title);
 // console.log("Catégorie:", categoryId);
