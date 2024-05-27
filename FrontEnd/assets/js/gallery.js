@@ -3,6 +3,7 @@ const worksGallerySection = document.querySelector("#portfolio .gallery");
 const filtersDiv = document.querySelector("#portfolio .filters");
 
 export async function displayWorks(categoryId) {
+  worksGallerySection.innerHTML = "";
   const api = new API();
   const works = await api.fetchWorks();
   // Afficher les travaux dans la galerie

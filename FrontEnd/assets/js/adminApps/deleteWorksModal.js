@@ -1,5 +1,5 @@
-
 import API from "../apiConfig.js";
+import { displayWorks } from "../gallery.js";
 export function displayModal() {
   displayWorksInModal();
 }
@@ -25,6 +25,7 @@ function displayWorksInModal() {
             modalGalleryElement.remove();
           });
         displayModal();
+        displayWorks();
 
       });
       modalGallery.appendChild(modalGalleryElement);

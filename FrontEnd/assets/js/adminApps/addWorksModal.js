@@ -1,5 +1,5 @@
 import API from "../apiConfig.js";
-
+import { displayWorks } from "../gallery.js";
 const dropArea = document.querySelector(".uploadArea");
 const dragText = document.querySelector(".uploadButton");
 const uploadButton = document.querySelector(".addPhotoButton");
@@ -148,6 +148,7 @@ function uploadData() {
         uploadMessage.classList.add("uploadSuccessMessage");
         uploadMessage.innerHTML = "Projet ajouté avec succès";
         dropArea.appendChild(uploadMessage);
+        displayWorks();
         setTimeout(() => {
           uploadMessage.remove();
           titleInput.value = "";
