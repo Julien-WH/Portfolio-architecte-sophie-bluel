@@ -1,4 +1,4 @@
-import { displayModal } from "./deleteWorksModal.js";
+import { displayWorksInModal } from "./deleteWorksModal.js";
 import { formReset } from "./addWorksModal.js";
 const modal = document.getElementById("modal"); // Récupérer la modale
 const closeModalButton = document.querySelectorAll(".closeModalButton");
@@ -41,7 +41,7 @@ export function showEditBanner() {
     const openButton = document.querySelector(".openButton");
     openButton.addEventListener("click", () => {
         modal.showModal();
-        displayModal();
+        displayWorksInModal();
         });
 }
 
@@ -63,7 +63,7 @@ export function addEditButton() {
   galleryHeaderWrapper.appendChild(editButton);
   editButton.addEventListener("click", () => {
     modal.showModal();
-    displayModal();
+    displayWorksInModal();
   });
 }
 
@@ -85,4 +85,5 @@ modalAddWorkButton.addEventListener("click", () => {
 modalBackButton.addEventListener("click", () => {
   deleteWorkModal.classList.remove("modalHidden");
   addWorkModal.classList.add("modalHidden");
+  displayWorksInModal();
 });

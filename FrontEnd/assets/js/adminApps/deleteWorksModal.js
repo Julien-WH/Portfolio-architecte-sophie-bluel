@@ -1,73 +1,43 @@
 import API from "../apiConfig.js";
 import { displayWorks } from "../gallery.js";
-export function displayModal() {
-  displayWorksInModal();
+
+// Création d'une instance de l'API
+const api = new API();
+
+// Création d'un élément de la galerie
+function createGalleryElement(work) {
+    const modalGalleryElement = document.createElement("div");
+    modalGalleryElement.classList.add("modalGalleryElement");
+    modalGalleryElement.style.backgroundImage = `url(${work.imageUrl})`;
+    return modalGalleryElement;
 }
 
-// Afficher les travaux dans la modale
-function displayWorksInModal() {
-  const modalGallery = document.querySelector(".modalGallery");
-  modalGallery.innerHTML = "";
-  const api = new API();
-  api.fetchWorks().then((works) => {
-    works.forEach((work) => {
-      const modalGalleryElement = document.createElement("div");
-      modalGalleryElement.classList.add("modalGalleryElement");
-      const workImage = document.createElement("img");
-      workImage.src = work.imageUrl;
-      modalGalleryElement.style.backgroundImage = `url(${workImage.src})`;
-      const modalDeleteWorkButton = document.createElement("button");
-      modalDeleteWorkButton.innerText = "supprimer le projet";
-      modalDeleteWorkButton.classList.add("deleteWorkButton");
-      modalDeleteWorkButton.addEventListener("click", () => {
-        new API().deleteWork(work.id)
-          .then(() => {
-            modalGalleryElement.remove();
-          });
-        displayModal();
-        displayWorks();
-
-      });
-      modalGallery.appendChild(modalGalleryElement);
-      modalGalleryElement.appendChild(modalDeleteWorkButton);
-    
+// Ajout d'un bouton de suppression
+function createDeleteButton(work, modalGalleryElement) {
+    const modalDeleteWorkButton = document.createElement("button");
+    modalDeleteWorkButton.innerText = "supprimer le projet";
+    modalDeleteWorkButton.classList.add("deleteWorkButton");
+    modalDeleteWorkButton.addEventListener("click", () => {
+        api.deleteWork(work.id)
+            .then(() => {
+                modalGalleryElement.remove();
+                displayWorksInModal();
+                displayWorks();
+            });
     });
-  });
+    return modalDeleteWorkButton;
 }
 
-
-
-// const modal = document.querySelector("#modal");
-// const openModal = document.querySelector(".open-modal");
-// const closeModal = document.querySelector(".close-modal");
-// import { works } from "./gallery.js";
-
-// openModal.addEventListener("click", () => {
-//   modal.showModal();
-// });
-
-// closeModal.addEventListener("click", () => {
-//     modal.close();
-//   });
-
-// // * Afficher la galerie de travaux dans la modale
-// function displayWorksInModal() {
-//   const modalGallery = document.querySelector(".modalGallery");
-//   modalGallery.innerHTML = "";
-//   works.forEach((work) => {
-//     const figure = document.createElement("figure");
-//     const workImage = document.createElement("img");
-//     workImage.src = work.imageUrl;
-//     workImage.alt = work.title;
-//     const deleteButton = document.createElement("button");
-//     deleteButton.innerText = "X";
-//     deleteButton.addEventListener("click", () => {
-//       deleteWork(work.id);
-//     });
-
-//     figure.appendChild(workImage);
-//     figure.appendChild(deleteButton);
-//     modalGallery.appendChild(figure);
-//   });
-// }
-// displayWorksInModal();          
+// Afficher les travaux dans la modale en tant que galerie
+export function displayWorksInModal() {
+    const modalGallery = document.querySelector(".modalGallery");
+    modalGallery.innerHTML = "";
+    api.fetchWorks().then((works) => {
+        works.forEach((work) => {
+            const modalGalleryElement = createGalleryElement(work);
+            const modalDeleteWorkButton = createDeleteButton(work, modalGalleryElement);
+            modalGallery.appendChild(modalGalleryElement);
+            modalGalleryElement.appendChild(modalDeleteWorkButton);
+        });
+    });
+}
