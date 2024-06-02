@@ -36,7 +36,7 @@ async function adminLogin() {
       localStorage.setItem("userId", response.userId);
       window.location.replace("index.html");
     } catch (error) {
-      displayErrorMessage(loginForm, "Erreur lors de la connexion");
+      displayErrorMessage(loginForm, "Veuillez vérifier vos identifiants.");
     }
   });
 }
